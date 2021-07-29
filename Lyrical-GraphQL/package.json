@@ -1,11 +1,11 @@
 {
   "name": "lyrical",
   "version": "1.0.0",
-  "description": "Starter point for a graphQL course",
+  "description": "App to add songs with lyrics",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
+    "url": "https://github.com/tomryb/graphql-with-react"
   },
   "scripts": {
     "dev": "nodemon index.js --ignore client"
@@ -22,6 +22,7 @@
     "body-parser": "^1.16.0",
     "connect-mongo": "^1.3.2",
     "css-loader": "^0.26.1",
+    "dotenv": "^10.0.0",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "express-session": "^1.15.0",
