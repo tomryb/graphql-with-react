@@ -7,19 +7,20 @@ const passport = require('passport');
 const passportConfig = require('./services/auth');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema/schema');
-
-// Create a new Express application
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 // Replace with your mongoLab URI
-const MONGO_URI = 'mongodb://stephen:password@ds053178.mlab.com:53178/auth';
+
+const MONGO_URI = `mongodb://${process.env.MONGO_DB_NAME}:${process.env.MONGO_DB_PASS}@cluster0-shard-00-00.xhuaw.mongodb.net:27017,cluster0-shard-00-01.xhuaw.mongodb.net:27017,cluster0-shard-00-02.xhuaw.mongodb.net:27017/${process.env.MONGO_CLUSTER_NAME}?ssl=true&replicaSet=atlas-12td7u-shard-0&authSource=admin&retryWrites=true&w=majority`
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
 
 // Connect to the mongoDB instance and log a message
 // on success or failure
-mongoose.connect(MONGO_URI);
+mongoose.connect(MONGO_URI, { useNewUrlParser: true });
 mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
     .on('error', error => console.log('Error connecting to MongoLab:', error));
