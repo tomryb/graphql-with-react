@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import AuthForm from './AuthForm';
-import mutation from '../mutations/Login';
-import { graphql } from 'react-apollo';
-import query from '../queries/CurrentUser';
-import { hashHistory } from 'react-router';
+import React, { Component } from "react";
+import AuthForm from "./AuthForm";
+import mutation from "../mutations/Login";
+import { graphql } from "react-apollo";
+import query from "../queries/CurrentUser";
+import { hashHistory } from "react-router";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -18,18 +18,20 @@ class LoginForm extends Component {
     // when the component rerenders
     if (!this.props.data.user && nextProps.data.user) {
       // redirect to dashboard!!!!
-      hashHistory.push('/dashboard');
+      hashHistory.push("/dashboard");
     }
   }
 
   onSubmit({ email, password }) {
-    this.props.mutate({
-      variables: { email, password },
-      refetchQueries: [{ query }]
-    }).catch(res => {
-      const errors = res.graphQLErrors.map(error => error.message);
-      this.setState({ errors });
-    });
+    this.props
+      .mutate({
+        variables: { email, password },
+        refetchQueries: [{ query }],
+      })
+      .catch((res) => {
+        const errors = res.graphQLErrors.map((error) => error.message);
+        this.setState({ errors });
+      });
   }
 
   render() {
@@ -45,6 +47,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(query)(
-  graphql(mutation)(LoginForm)
-);
+export default graphql(query)(graphql(mutation)(LoginForm));

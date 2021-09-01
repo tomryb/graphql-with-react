@@ -1,25 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
-import { Router, hashHistory, Route } from 'react-router';
+import React from "react";
+import ReactDOM from "react-dom";
+import ApolloClient, { createNetworkInterface } from "apollo-client";
+import { ApolloProvider } from "react-apollo";
+import { Router, hashHistory, Route } from "react-router";
 
-import App from './components/App';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
-import Dashboard from './components/Dashboard';
-import requireAuth from './components/requireAuth';
+import App from "./components/App";
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+import Dashboard from "./components/Dashboard";
+import requireAuth from "./components/requireAuth";
 
 const networkInterface = createNetworkInterface({
-  uri: '/graphql',
+  uri: "/graphql",
   opts: {
-    credentials: 'same-origin'
-  }
+    credentials: "same-origin",
+  },
 });
 
 const client = new ApolloClient({
   networkInterface,
-  dataIdFromObject: o => o.id
+  dataIdFromObject: (o) => o.id,
 });
 
 const Root = () => {
@@ -36,4 +36,4 @@ const Root = () => {
   );
 };
 
-ReactDOM.render(<Root />, document.querySelector('#root'));
+ReactDOM.render(<Root />, document.querySelector("#root"));
